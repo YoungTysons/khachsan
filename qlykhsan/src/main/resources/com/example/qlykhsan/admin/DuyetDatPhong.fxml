@@ -21,7 +21,7 @@
                     </padding>
                 </Label>
 
-                <TableView fx:id="tableYeu Cau" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableYeuCau" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colKhachHang" prefWidth="200.0" text="Khách hàng" />
                         <TableColumn fx:id="colPhong" prefWidth="150.0" text="Phòng" />

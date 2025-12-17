@@ -6,6 +6,8 @@ module com.example.qlykhsan {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql; // <--- CẦN THÊM DÒNG NÀY
+    requires com.microsoft.sqlserver.jdbc; // (Nếu dùng module)
 
     // Mở quyền cho gói chính (đã có sẵn)
     opens com.example.qlykhsan to javafx.fxml;

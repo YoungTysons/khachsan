@@ -1,0 +1,23 @@
+# Các file đã biên dịch (Cần bỏ qua nhất)
+/target/
+build/
+dist/
+*.class
+*.jar
+
+# File cấu hình của NetBeans (nếu dùng)
+nbproject/private/
+build.xml
+nbbuild.xml
+dist.xml
+
+# File cấu hình của Eclipse/VSCode (đề phòng đồng đội dùng)
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+*.iml
+
+# File log rác
+*.log
