@@ -90,11 +90,11 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Đặt phòng" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="13.0" />
-                                    </font>
-                                </Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff; -fx-cursor: hand;" text="Đặt phòng" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
                             </children>
                         </VBox>
                     </children>
@@ -126,11 +126,11 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Đặt phòng" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="13.0" />
-                                    </font>
-                                </Button>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff; -fx-cursor: hand;" text="Đặt phòng" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
                             </children>
                         </VBox>
                     </children>
