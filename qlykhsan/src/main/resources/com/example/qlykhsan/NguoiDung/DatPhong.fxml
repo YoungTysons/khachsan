@@ -1,142 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.NguoiDung.DatPhong">
+<VBox prefHeight="600.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.NguoiDung.DatPhong">
     <children>
         <VBox style="-fx-border-color: transparent transparent #ccc transparent; -fx-border-width: 1;">
             <children>
-                <Label text="Đặt Phòng - Phòng Trống">
+                <Label text="Danh Sách Phòng Trống">
                     <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="22.0" />
                     </font>
                     <padding>
-                        <Insets bottom="10.0" left="15.0" top="10.0" />
+                        <Insets bottom="15.0" left="20.0" top="15.0" />
                     </padding>
                 </Label>
             </children>
         </VBox>
 
-        <FlowPane hgap="20.0" vgap="20.0">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
-            </padding>
-            <children>
-
-                <VBox prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #999; -fx-border-width: 1;">
-                    <children>
-                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-border-color: transparent transparent #999 transparent;" text="Phòng 102">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" top="10.0" />
-                            </padding>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <VBox spacing="8.0">
-                            <padding>
-                                <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                            <children>
-                                <Label text="2.000.000đ/tháng" textFill="#007bff">
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Phòng có quạt, WC chung" textFill="#555" />
-                                <Label text="Trống" textFill="#28a745">
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff; -fx-cursor: hand;" text="Đặt phòng" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="13.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-
-                <VBox prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #999; -fx-border-width: 1;">
-                    <children>
-                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-border-color: transparent transparent #999 transparent;" text="Phòng 202">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" top="10.0" />
-                            </padding>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <VBox spacing="8.0">
-                            <padding>
-                                <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                            <children>
-                                <Label text="2.200.000đ/tháng" textFill="#007bff">
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Phòng có máy lạnh" textFill="#555" />
-                                <Label text="Trống" textFill="#28a745">
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Đặt phòng" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="13.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-
-                <VBox prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #999; -fx-border-width: 1;">
-                    <children>
-                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-border-color: transparent transparent #999 transparent;" text="Phòng 301">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" top="10.0" />
-                            </padding>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <VBox spacing="8.0">
-                            <padding>
-                                <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                            <children>
-                                <Label text="1.800.000đ/tháng" textFill="#007bff">
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Phòng nhỏ, phù hợp 1 người" textFill="#555" />
-                                <Label text="Trống" textFill="#28a745">
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Đặt phòng" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="13.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
-
-            </children>
-        </FlowPane>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #f4f4f4;">
+            <content>
+                <FlowPane fx:id="flowPanePhong" hgap="25.0" vgap="25.0">
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="10.0" />
+                    </padding>
+                </FlowPane>
+            </content>
+        </ScrollPane>
     </children>
 </VBox>
