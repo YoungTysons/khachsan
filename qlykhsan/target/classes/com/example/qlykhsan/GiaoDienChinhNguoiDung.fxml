@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.qlykhsan.GiaoDienChinhNguoiDung"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.GiaoDienChinhNguoiDung">
+    <children>
+        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
+            <left>
+                <VBox prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="MENU" textFill="#333333">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+
+                        <Button fx:id="btnDatPhong" mnemonicParsing="false" onAction="#handleShowDatPhong" prefHeight="40.0" prefWidth="200.0" text="Đặt phòng">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button fx:id="btnThongBao" mnemonicParsing="false" onAction="#handleShowThongBao" prefHeight="40.0" prefWidth="200.0" text="Thông báo">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button fx:id="btnGuiPhanAnh" mnemonicParsing="false" onAction="#handleShowGuiPhanAnh" prefHeight="40.0" prefWidth="200.0" text="Gửi phản ánh" style="-fx-background-color: #C0C0C0;">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Region VBox.vgrow="ALWAYS" />
+
+                        <Button fx:id="Dangxuat" mnemonicParsing="false" onAction="#handleDangXuat" prefHeight="40.0" prefWidth="200.0" text="Đăng Xuất">
+                            <VBox.margin>
+                                <Insets bottom="20.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </left>
+
+            <center>
+                <AnchorPane fx:id="contentArea" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F4F4F4;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="240.0" layoutY="250.0" text="Chọn menu để hiển thị nội dung" textFill="#949494">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </center>
+
+        </BorderPane>
+    </children>
 </AnchorPane>
