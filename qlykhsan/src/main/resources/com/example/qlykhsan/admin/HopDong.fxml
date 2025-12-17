@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.qlykhsan.admin.HopDong"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.admin.HopDong">
+    <children>
+        <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
+            <top>
+                <Label text="Quản Lý Hợp Đồng" BorderPane.alignment="CENTER_LEFT">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </Label>
+            </top>
+
+            <center>
+                <TableView fx:id="tableHopDong" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="colKhachThue" prefWidth="150.0" text="Khách thuê" />
+                        <TableColumn fx:id="colPhong" prefWidth="100.0" text="Phòng" />
+                        <TableColumn fx:id="colNgayBD" prefWidth="120.0" text="Ngày bắt đầu" />
+                        <TableColumn fx:id="colNgayKT" prefWidth="120.0" text="Ngày kết thúc" />
+                        <TableColumn fx:id="colTienCoc" prefWidth="120.0" text="Tiền cọc" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </BorderPane.margin>
+                </TableView>
+            </center>
+
+            <right>
+                <VBox prefHeight="540.0" prefWidth="320.0" spacing="10.0" style="-fx-border-color: #cccccc; -fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;" text="Tạo hợp đồng mới">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Label>
+
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <children>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Khách thuê" />
+                                        <ComboBox fx:id="cbKhachThue" maxWidth="1.7976931348623157E308" promptText="-- Chọn khách --" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Phòng (chỉ hiện phòng trống)" />
+                                        <ComboBox fx:id="cbPhong" maxWidth="1.7976931348623157E308" promptText="-- Chọn phòng --" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Ngày bắt đầu" />
+                                        <DatePicker fx:id="dpNgayBD" maxWidth="1.7976931348623157E308" promptText="mm/dd/yyyy" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Ngày kết thúc" />
+                                        <DatePicker fx:id="dpNgayKT" maxWidth="1.7976931348623157E308" promptText="mm/dd/yyyy" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Tiền cọc (VNĐ)" />
+                                        <TextField fx:id="tfTienCoc" />
+                                    </children>
+                                </VBox>
+
+                                <Button fx:id="btnTaoHopDong" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Tạo hợp đồng" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </right>
+        </BorderPane>
+    </children>
 </AnchorPane>
