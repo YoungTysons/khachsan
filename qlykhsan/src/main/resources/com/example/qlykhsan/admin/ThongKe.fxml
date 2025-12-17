@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.admin.ThongKe">
@@ -20,14 +20,14 @@
 
                 <HBox spacing="20.0">
                     <children>
-                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white;" HBox.hgrow="ALWAYS">
+                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0;" text="Tổng số phòng">
+                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5 5 0 0;" text="Tổng số phòng">
                                     <padding>
                                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label fx:id="lblTongSoPhong" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="5" textFill="#2980b9">
+                                <Label fx:id="lblTongSoPhong" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="0" textFill="#2980b9">
                                     <font>
                                         <Font name="System Bold" size="36.0" />
                                     </font>
@@ -35,14 +35,14 @@
                             </children>
                         </VBox>
 
-                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white;" HBox.hgrow="ALWAYS">
+                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0;" text="Phòng trống">
+                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5 5 0 0;" text="Phòng trống">
                                     <padding>
                                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label fx:id="lblPhongTrong" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="3" textFill="#27ae60">
+                                <Label fx:id="lblPhongTrong" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="0" textFill="#27ae60">
                                     <font>
                                         <Font name="System Bold" size="36.0" />
                                     </font>
@@ -50,14 +50,14 @@
                             </children>
                         </VBox>
 
-                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white;" HBox.hgrow="ALWAYS">
+                        <VBox style="-fx-border-color: #cccccc; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0;" text="Doanh thu dự kiến/tháng">
+                                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5 5 0 0;" text="Doanh thu thực tế (Tháng)">
                                     <padding>
                                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label fx:id="lblDoanhThu" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="5.500.000đ" textFill="#f39c12">
+                                <Label fx:id="lblDoanhThu" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="0đ" textFill="#f39c12">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
@@ -67,15 +67,38 @@
                     </children>
                 </HBox>
 
-                <VBox style="-fx-border-color: #cccccc; -fx-background-color: white;" VBox.vgrow="ALWAYS">
+                <VBox style="-fx-border-color: #cccccc; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
                     <children>
-                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0;" text="Biểu đồ trạng thái phòng">
+                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5 5 0 0;" text="Tình trạng chi tiết các phòng">
                             <padding>
-                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
                             </padding>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
                         </Label>
-
-                        <Pane fx:id="chartContainer" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4;" VBox.vgrow="ALWAYS" />
+                        
+                        <HBox spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-border-color: transparent transparent #eeeeee transparent;">
+                            <padding>
+                                <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+                            </padding>
+                            <children>
+                                <Label prefWidth="150.0" text="Số Phòng" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                                <Label prefWidth="150.0" text="Loại Phòng" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                                <Label prefWidth="150.0" text="Giá Thuê" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                                <Label prefWidth="100.0" text="Trạng Thái" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                            </children>
+                        </HBox>
+                        
+                        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: white;" VBox.vgrow="ALWAYS">
+                           <content>
+                               <VBox fx:id="chartContainer" spacing="5.0" style="-fx-background-color: #ffffff;">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                     </children>
                 </VBox>
             </children>
