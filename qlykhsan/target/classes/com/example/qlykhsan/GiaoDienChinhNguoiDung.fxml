@@ -9,57 +9,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.GiaoDienChinhAdmin">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.GiaoDienChinhNguoiDung">
     <children>
         <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <left>
                 <VBox prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="ADMIN MENU" textFill="#333333">
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="USER MENU" textFill="#333333">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
 
-                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#handleShowDashboard" prefHeight="40.0" prefWidth="200.0" text="Dashboard">
-                            <VBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </VBox.margin>
-
-                        </Button>
-
-                        <Button fx:id="btnQuanLyPhong" layoutX="15.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleShowQuanLyPhong" prefHeight="40.0" prefWidth="200.0" text="Quản lý phòng">
+                        <Button fx:id="btnDatPhong" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleShowDatPhong" prefHeight="40.0" prefWidth="200.0" text="Đặt phòng">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnQuanLyKhach" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#handleShowQuanLyKhach" prefHeight="40.0" prefWidth="200.0" text="Quản lý khách">
+                        <Button fx:id="btnThongBao" layoutX="15.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleShowThongBao" prefHeight="40.0" prefWidth="200.0" text="Thông báo">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnHopDong" layoutX="15.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleShowHopDong" prefHeight="40.0" prefWidth="200.0" text="Hợp đồng">
-                            <VBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" />
-                            </VBox.margin>
-                        </Button>
-
-                        <Button fx:id="btnThongBao" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleShowThongBao" prefHeight="40.0" prefWidth="200.0" text="Thông báo">
-                            <VBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" />
-                            </VBox.margin>
-                        </Button>
-
-                        <Button fx:id="btnPhanAnh" layoutX="15.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleShowPhanAnh" prefHeight="40.0" prefWidth="200.0" text="Xem phản ánh">
-                            <VBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" />
-                            </VBox.margin>
-                        </Button>
-
-                        <Button fx:id="btnDuyetDatPhong" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleShowDuyetDatPhong" prefHeight="40.0" prefWidth="200.0" text="Duyệt đặt phòng">
+                        <Button fx:id="btnGuiPhanAnh" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleShowGuiPhanAnh" prefHeight="40.0" prefWidth="200.0" text="Gửi phản ánh">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
