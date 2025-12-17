@@ -1,101 +1,133 @@
 package com.example.qlykhsan;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;      // Thêm import Alert
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType; // Thêm import ButtonType
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Optional;              // Thêm import Optional
+import java.util.ResourceBundle;
 
-public class GiaoDienChinhAdmin {
+public class GiaoDienChinhAdmin implements Initializable {
 
     @FXML
-    private AnchorPane contentArea; // Khu vực ở giữa màn hình
+    private AnchorPane contentArea; // Khu vực hiển thị nội dung bên phải
 
+    // Các Button menu
+    @FXML private Button btnDashboard;
+    @FXML private Button btnQuanLyPhong;
+    @FXML private Button btnQuanLyKhach;
+    @FXML private Button btnHopDong;
+    @FXML private Button btnThongBao;
+    @FXML private Button btnPhanAnh;
+    @FXML private Button btnDuyetDatPhong;
+    @FXML private Button Dangxuat;
+
+    // --- Hàm khởi chạy đầu tiên ---
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Mặc định load trang Thống kê
+        loadView("admin/ThongKe.fxml");
+    }
+
+    // --- CÁC HÀM XỬ LÝ SỰ KIỆN MENU ---
+    
     @FXML
-    public void handleShowDashboard() {
-        loadPage("/com/example/qlykhsan/admin/ThongKe.fxml");
+    void handleShowDashboard(ActionEvent event) {
+        System.out.println("Hiển thị Dashboard");
+        loadView("admin/ThongKe.fxml");
     }
 
     @FXML
-    public void handleShowQuanLyPhong() {
-        loadPage("/com/example/qlykhsan/admin/QuanLyPhong.fxml");
+    void handleShowQuanLyPhong(ActionEvent event) {
+        System.out.println("Hiển thị Quản lý phòng");
+        loadView("admin/QuanLyPhong.fxml");
     }
 
     @FXML
-    public void handleShowQuanLyKhach() {
-        loadPage("/com/example/qlykhsan/admin/QuanLyKhach.fxml");
+    void handleShowQuanLyKhach(ActionEvent event) {
+        System.out.println("Hiển thị Quản lý khách");
+        loadView("admin/QuanLyKhach.fxml");
     }
 
     @FXML
-    public void handleShowHopDong() {
-        loadPage("/com/example/qlykhsan/admin/HopDong.fxml");
+    void handleShowHopDong(ActionEvent event) {
+        System.out.println("Hiển thị Hợp đồng");
+        loadView("admin/HopDong.fxml");
     }
 
     @FXML
-    public void handleShowThongBao() {
-        loadPage("/com/example/qlykhsan/admin/ThongBao.fxml");
+    void handleShowThongBao(ActionEvent event) {
+        System.out.println("Hiển thị Thông báo");
+        loadView("admin/ThongBao.fxml");
     }
 
     @FXML
-    public void handleShowPhanAnh() {
-        loadPage("/com/example/qlykhsan/admin/XemPhanAnh.fxml");
+    void handleShowPhanAnh(ActionEvent event) {
+        System.out.println("Hiển thị Phản ánh");
+        loadView("admin/XemPhanAnh.fxml");
     }
 
     @FXML
-    public void handleShowDuyetDatPhong() {
-        loadPage("/com/example/qlykhsan/admin/DuyetDatPhong.fxml");
+    void handleShowDuyetDatPhong(ActionEvent event) {
+        System.out.println("Hiển thị Duyệt đặt phòng");
+        loadView("admin/DuyetDatPhong.fxml");
     }
 
-    @FXML
-    public void handleDangXuat(javafx.event.ActionEvent event) {
+    // --- Hàm dùng chung để load view con ---
+    private void loadView(String fxmlPath) {
         try {
-            // Ẩn/Đóng cửa sổ hiện tại
-            ((Node)event.getSource()).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Node node = loader.load();
+            
+            AnchorPane.setTopAnchor(node, 0.0);
+            AnchorPane.setBottomAnchor(node, 0.0);
+            AnchorPane.setLeftAnchor(node, 0.0);
+            AnchorPane.setRightAnchor(node, 0.0);
 
-            // Load lại màn hình đăng nhập (giả sử tên là hello-view.fxml hoặc Login.fxml)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlykhsan/hello-view.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Đăng nhập");
-            stage.show();
+            contentArea.getChildren().setAll(node);
+            
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Không tìm thấy file FXML: " + fxmlPath);
         }
     }
 
-    // Hàm dùng chung để load giao diện con
-    private void loadPage(String fxmlFileName) {
-        try {
-            var resource = getClass().getResource(fxmlFileName);
+    // --- XỬ LÝ ĐĂNG XUẤT CÓ XÁC NHẬN ---
+    @FXML
+    void handleDangXuat(ActionEvent event) {
+        // 1. Tạo hộp thoại xác nhận
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận đăng xuất");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc chắn muốn đăng xuất không?");
 
-            // Kiểm tra kỹ trước khi load
-            if (resource == null) {
-                System.err.println("KHÔNG TÌM THẤY FILE FXML: " + fxmlFileName);
-                System.err.println("Kiểm tra lại thư mục src/main/resources/...");
-                return; // Dừng lại để không bị crash
+        // 2. Hiện hộp thoại và chờ người dùng bấm nút
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // 3. Nếu bấm OK thì mới thực hiện đăng xuất
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("DangNhap.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Đăng Nhập Hệ Thống");
+                stage.setScene(new Scene(root));
+                stage.centerOnScreen();
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            System.out.println("Đang tìm file tại: " + resource);
-            Parent view = FXMLLoader.load(resource);
-
-            // Xóa view cũ và thêm view mới
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(view);
-
-            // Neo (Anchor) để view con giãn full màn hình cha
-            AnchorPane.setTopAnchor(view, 0.0);
-            AnchorPane.setBottomAnchor(view, 0.0);
-            AnchorPane.setLeftAnchor(view, 0.0);
-            AnchorPane.setRightAnchor(view, 0.0);
-
-        } catch (IOException e) {
-            System.err.println("Lỗi khi load file FXML: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 }
