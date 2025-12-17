@@ -62,20 +62,26 @@ public class DangNhap {
 
     private String checkLogin(String username, String password) {
         String role = null;
-        // CẬP NHẬT: Tên bảng là NguoiDung, không phải TaiKhoan.....
-        String query = "SELECT VaiTro FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ?";
+        // Thêm lấy MaNguoiDung và HoTen vào câu lệnh SELECT
+        String query = "SELECT MaNguoiDung, HoTen, VaiTro FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
-            
+
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
             ResultSet rs = pstmt.executeQuery();
-            
+
             if (rs.next()) {
                 role = rs.getString("VaiTro");
-                if (role != null) role = role.trim(); 
+
+                // --- DÒNG QUAN TRỌNG NHẤT: Lưu thông tin vào GuiPhanAnh ---
+                com.example.qlykhsan.NguoiDung.GuiPhanAnh.CURRENT_USER_ID = rs.getInt("MaNguoiDung");
+                com.example.qlykhsan.NguoiDung.GuiPhanAnh.CURRENT_USER_NAME = rs.getNString("HoTen");
+                // ---------------------------------------------------------
+
+                if (role != null) role = role.trim();
             }
 
         } catch (SQLException e) {
