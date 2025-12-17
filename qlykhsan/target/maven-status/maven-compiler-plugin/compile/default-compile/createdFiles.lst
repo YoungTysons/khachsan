@@ -4,6 +4,7 @@ com\example\qlykhsan\admin\XemPhanAnh$PhanAnhModel.class
 com\example\qlykhsan\NguoiDung\GuiPhanAnh.class
 com\example\qlykhsan\GiaoDienChinhAdmin.class
 com\example\qlykhsan\HelloController.class
+com\example\qlykhsan\GiaoDienChinhNguoiDung.class
 com\example\qlykhsan\NguoiDung\ThongBao.class
 module-info.class
 com\example\qlykhsan\admin\DuyetDatPhong$YeuCau.class
