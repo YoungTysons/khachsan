@@ -11,5 +11,6 @@ com\example\qlykhsan\admin\XemPhanAnh.class
 com\example\qlykhsan\Main.class
 com\example\qlykhsan\admin\QuanlyKhach.class
 com\example\qlykhsan\admin\ThongKe.class
+com\example\qlykhsan\DangNhap.class
 com\example\qlykhsan\admin\DuyetDatPhong.class
 com\example\qlykhsan\admin\HopDong.class
