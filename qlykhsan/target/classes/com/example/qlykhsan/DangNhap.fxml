@@ -29,7 +29,7 @@
         <PasswordField fx:id="txtPassword" promptText="Nhập mật khẩu..." />
     </VBox>
 
-    <Button text="Đăng Nhập" onAction="#handleLogin" prefWidth="120.0" style="-fx-font-weight: bold;"/>
+    <Button text="Đăng Nhập" onAction="#handleDangNhap" prefWidth="120.0" style="-fx-font-weight: bold;"/>
     
     <Label fx:id="lblError" textFill="RED" />
 </VBox>

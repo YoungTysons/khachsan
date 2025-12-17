@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.qlykhsan;
 
-/**
- *
- * @author ASUS
- */
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 public class DangNhap {
-    
+    @FXML
+    public void handleDangNhap(ActionEvent event) {
+        System.out.println("Đã nhấn nút đăng nhập!");
+        // Code xử lý đăng nhập tại đây
+    }    
 }
