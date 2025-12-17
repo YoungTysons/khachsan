@@ -14,7 +14,7 @@
         <junit.version>5.9.1</junit.version>
     </properties>
 
-    <dependencies>
+    <dependencies> 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
