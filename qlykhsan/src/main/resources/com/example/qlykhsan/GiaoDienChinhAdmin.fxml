@@ -5,8 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Region?> <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.GiaoDienChinhAdmin">
     <children>
@@ -34,31 +35,31 @@
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnQuanLyKhach" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Quản lý khách">
+                        <Button fx:id="btnQuanLyKhach" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#handleShowQuanLyKhach" prefHeight="40.0" prefWidth="200.0" text="Quản lý khách">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnHopDong" layoutX="15.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Hợp đồng">
+                        <Button fx:id="btnHopDong" layoutX="15.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleShowHopDong" prefHeight="40.0" prefWidth="200.0" text="Hợp đồng">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnThongBao" layoutX="15.0" layoutY="195.0" mnemonicParsing="false"  prefHeight="40.0" prefWidth="200.0" text="Thông báo">
+                        <Button fx:id="btnThongBao" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleShowThongBao" prefHeight="40.0" prefWidth="200.0" text="Thông báo">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnPhanAnh" layoutX="15.0" layoutY="240.0" mnemonicParsing="false"  prefHeight="40.0" prefWidth="200.0" text="Xem phản ánh">
+                        <Button fx:id="btnPhanAnh" layoutX="15.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleShowPhanAnh" prefHeight="40.0" prefWidth="200.0" text="Xem phản ánh">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button fx:id="btnDuyetDatPhong" layoutX="15.0" layoutY="285.0" mnemonicParsing="false"  prefHeight="40.0" prefWidth="200.0" text="Duyệt đặt phòng">
+                        <Button fx:id="btnDuyetDatPhong" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleShowDuyetDatPhong" prefHeight="40.0" prefWidth="200.0" text="Duyệt đặt phòng">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                             </VBox.margin>
@@ -66,7 +67,7 @@
 
                         <Region VBox.vgrow="ALWAYS" />
 
-                        <Button fx:id="Dangxuat" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Đăng Xuất">
+                        <Button fx:id="Dangxuat" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDangXuat" prefHeight="40.0" prefWidth="200.0" text="Đăng Xuất">
                             <VBox.margin>
                                 <Insets bottom="20.0" left="5.0" right="5.0" />
                             </VBox.margin>
