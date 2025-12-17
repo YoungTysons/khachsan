@@ -62,7 +62,7 @@ public class DangNhap {
 
     private String checkLogin(String username, String password) {
         String role = null;
-        // CẬP NHẬT: Tên bảng là NguoiDung, không phải TaiKhoan
+        // CẬP NHẬT: Tên bảng là NguoiDung, không phải TaiKhoan.....
         String query = "SELECT VaiTro FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
