@@ -30,7 +30,6 @@ public class DangNhap {
 
     @FXML
     public void handleLogin(ActionEvent event) {
-        // 1. Cắt khoảng trắng thừa
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
 
@@ -39,19 +38,14 @@ public class DangNhap {
             return;
         }
 
-        // 2. Gọi hàm checkLogin để lấy VaiTro
         String role = checkLogin(username, password);
 
         if (role != null) {
             System.out.println("=> Đăng nhập THÀNH CÔNG. Vai trò: " + role);
             
-            // 3. Phân quyền chuyển màn hình
             if (role.equalsIgnoreCase("Admin")) {
-                // Chuyển sang giao diện Admin
                 chuyenManHinh(event, "GiaoDienChinhAdmin.fxml", "Hệ thống Quản Lý - Admin");
             } else {
-                // Chuyển sang giao diện Người dùng (Khách hàng)
-                // File này nằm trong src/main/resources/com/example/qlykhsan/
                 chuyenManHinh(event, "GiaoDienChinhNguoiDung.fxml", "Hệ thống Quản Lý - Khách Hàng");
             }
         } else {
@@ -62,7 +56,6 @@ public class DangNhap {
 
     private String checkLogin(String username, String password) {
         String role = null;
-        // Thêm lấy MaNguoiDung và HoTen vào câu lệnh SELECT
         String query = "SELECT MaNguoiDung, HoTen, VaiTro FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -76,7 +69,6 @@ public class DangNhap {
             if (rs.next()) {
                 role = rs.getString("VaiTro");
 
-                // --- DÒNG QUAN TRỌNG NHẤT: Lưu thông tin vào GuiPhanAnh ---
                 com.example.qlykhsan.NguoiDung.GuiPhanAnh.CURRENT_USER_ID = rs.getInt("MaNguoiDung");
                 com.example.qlykhsan.NguoiDung.GuiPhanAnh.CURRENT_USER_NAME = rs.getNString("HoTen");
                 // ---------------------------------------------------------
@@ -93,7 +85,6 @@ public class DangNhap {
 
     private void chuyenManHinh(ActionEvent event, String fxmlFile, String title) {
         try {
-            // Lưu ý: Đảm bảo các file .fxml nằm đúng trong folder resources/com/example/qlykhsan/
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
             

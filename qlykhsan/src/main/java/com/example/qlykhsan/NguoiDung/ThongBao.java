@@ -16,7 +16,6 @@ public class ThongBao {
     @FXML
     private VBox vboxDanhSachThongBao;
 
-    // Thông tin kết nối CSDL
     private final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=QlyKhachSanDB;encrypt=true;trustServerCertificate=true;";
     private final String DB_USER = "sa";
     private final String DB_PASS = "123456";
@@ -27,12 +26,10 @@ public class ThongBao {
     }
 
     private void loadThongBao() {
-        vboxDanhSachThongBao.getChildren().clear(); // Xóa sạch giao diện cũ
+        vboxDanhSachThongBao.getChildren().clear();
 
-        // Lấy ID người dùng đang đăng nhập từ file GuiPhanAnh
         int userId = GuiPhanAnh.CURRENT_USER_ID;
 
-        // Câu lệnh SQL: Lấy thông báo chung (NULL) HOẶC thông báo riêng của User này
         String sql = "SELECT TieuDe, NoiDung, NgayTao FROM ThongBao " +
                 "WHERE MaNguoiDung IS NULL OR MaNguoiDung = ? " +
                 "ORDER BY NgayTao DESC";
@@ -48,7 +45,6 @@ public class ThongBao {
                 String noiDung = rs.getString("NoiDung");
                 Timestamp ngayTao = rs.getTimestamp("NgayTao");
 
-                // Tạo giao diện thông báo động
                 VBox cardThongBao = createNotificationCard(tieuDe, noiDung, ngayTao.toString());
                 vboxDanhSachThongBao.getChildren().add(cardThongBao);
             }
@@ -63,9 +59,6 @@ public class ThongBao {
         }
     }
 
-    /**
-     * Hàm tạo Card giao diện cho từng thông báo giống như thiết kế FXML ban đầu
-     */
     private VBox createNotificationCard(String title, String content, String date) {
         VBox card = new VBox();
         card.setPadding(new Insets(10));
@@ -86,7 +79,7 @@ public class ThongBao {
 
         Label lblContent = new Label(content);
         lblContent.setWrapText(true);
-        lblContent.setMaxWidth(850); // Đảm bảo text không tràn màn hình
+        lblContent.setMaxWidth(850); 
 
         card.getChildren().addAll(header, lblContent);
         return card;

@@ -9,7 +9,7 @@
 
 <VBox prefHeight="600.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlykhsan.NguoiDung.DatPhong">
     <children>
-        <VBox style="-fx-border-color: transparent transparent #ccc transparent; -fx-border-width: 1;">
+        <VBox>
             <children>
                 <Label text="Danh Sách Phòng Trống">
                     <font>
@@ -22,7 +22,7 @@
             </children>
         </VBox>
 
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #f4f4f4;">
+        <ScrollPane fitToWidth="true">
             <content>
                 <FlowPane fx:id="flowPanePhong" hgap="25.0" vgap="25.0">
                     <padding>

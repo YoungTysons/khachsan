@@ -27,17 +27,13 @@ public class ThongBao implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // 1. Xóa các mẫu thiết kế cứng trong FXML (nếu có) để nạp dữ liệu thật
         vboxDanhSachThongBao.getChildren().clear();
 
-        // 2. Load danh sách thông báo từ DB
         loadThongBaoFromDB();
 
-        // 3. Gán sự kiện gửi
         btnGuiThongBao.setOnAction(e -> handleGuiThongBao());
     }
 
-    // --- LOGIC GỬI THÔNG BÁO ---
     private void handleGuiThongBao() {
         String tieuDe = tfTieuDe.getText().trim();
         String noiDung = taNoiDung.getText().trim();
@@ -47,7 +43,6 @@ public class ThongBao implements Initializable {
             return;
         }
 
-        // Insert vào DB (MaNguoiDung để NULL vì là thông báo chung của Admin)
         String sql = "INSERT INTO ThongBao (MaNguoiDung, TieuDe, NoiDung, NgayTao) VALUES (NULL, ?, ?, GETDATE())";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -59,7 +54,6 @@ public class ThongBao implements Initializable {
 
             showAlert("Thành công", "Đã gửi thông báo!");
             
-            // Clear form và load lại danh sách
             tfTieuDe.clear();
             taNoiDung.clear();
             loadThongBaoFromDB();
@@ -70,12 +64,10 @@ public class ThongBao implements Initializable {
         }
     }
 
-    // --- LOGIC LOAD DANH SÁCH (TẠO GIAO DIỆN ĐỘNG) ---
     private void loadThongBaoFromDB() {
-        // Xóa danh sách cũ trước khi load mới
         vboxDanhSachThongBao.getChildren().clear();
 
-        String sql = "SELECT * FROM ThongBao ORDER BY NgayTao DESC"; // Mới nhất lên đầu
+        String sql = "SELECT * FROM ThongBao ORDER BY NgayTao DESC"; 
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -88,10 +80,8 @@ public class ThongBao implements Initializable {
                 String noiDung = rs.getString("NoiDung");
                 String ngayTao = sdf.format(rs.getTimestamp("NgayTao"));
 
-                // Tạo giao diện item thông báo bằng code Java (giống mẫu FXML)
                 VBox item = createThongBaoItem(tieuDe, ngayTao, noiDung);
                 
-                // Thêm vào VBox chính
                 vboxDanhSachThongBao.getChildren().add(item);
             }
 
@@ -100,15 +90,12 @@ public class ThongBao implements Initializable {
         }
     }
 
-    // Hàm hỗ trợ vẽ giao diện cho 1 thông báo
     private VBox createThongBaoItem(String title, String date, String content) {
-        // 1. VBox container bao ngoài
         VBox container = new VBox();
         container.setSpacing(5);
         container.setPadding(new Insets(10));
         container.setStyle("-fx-border-color: #dddddd; -fx-background-color: #fcfcfc; -fx-border-radius: 3;");
 
-        // 2. Header (BorderPane): Trái là Title, Phải là Date
         BorderPane header = new BorderPane();
         
         Label lblTitle = new Label(title);
@@ -121,11 +108,9 @@ public class ThongBao implements Initializable {
         header.setLeft(lblTitle);
         header.setRight(lblDate);
 
-        // 3. Nội dung
         Label lblContent = new Label(content);
-        lblContent.setWrapText(true); // Tự xuống dòng nếu dài
+        lblContent.setWrapText(true); 
 
-        // 4. Ghép lại
         container.getChildren().addAll(header, lblContent);
 
         return container;

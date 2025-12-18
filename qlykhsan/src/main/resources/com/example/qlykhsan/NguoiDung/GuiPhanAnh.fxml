@@ -19,9 +19,9 @@
                     </font>
                 </Label>
 
-                <VBox maxWidth="500.0" style="-fx-border-color: #cccccc; -fx-background-color: white;">
+                <VBox maxWidth="500.0" >
                     <children>
-                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: #e0e0e0; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;" text="Form phản ánh">
+                        <Label maxWidth="1.7976931348623157E308" text="Form phản ánh">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -46,7 +46,7 @@
                                     </children>
                                 </VBox>
 
-                                <Button fx:id="btnGuiPhanAnh" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Gửi phản ánh" textFill="WHITE">
+                                <Button fx:id="btnGuiPhanAnh" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Gửi phản ánh">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

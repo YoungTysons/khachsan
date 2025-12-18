@@ -93,18 +93,22 @@
 
                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                     <children>
-                                        <Button fx:id="btnThem" mnemonicParsing="false" prefWidth="60.0" style="-fx-background-color: #007bff;" text="Thêm" textFill="WHITE">
+                                        <Button fx:id="btnThem" mnemonicParsing="false" prefWidth="60.0" text="Thêm">
                                             <font>
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnSua" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #e0e0e0;" text="Sửa" />
-                                        <Button fx:id="btnXoa" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #dc3545;" text="Xóa" textFill="WHITE">
+                                        <Button fx:id="btnSua" mnemonicParsing="false" prefWidth="50.0" text="Sửa">
                                             <font>
                                                 <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnHuy" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #e0e0e0;" text="Hủy" />
+                                        <Button fx:id="btnXoa" mnemonicParsing="false" prefWidth="50.0" text="Xóa" >
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="btnHuy" mnemonicParsing="false" prefWidth="50.0" text="Hủy" />
                                     </children>
                                     <VBox.margin>
                                         <Insets top="10.0" />

@@ -47,7 +47,7 @@
                                     </children>
                                 </VBox>
 
-                                <Button fx:id="btnGuiThongBao" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Gửi thông báo" textFill="WHITE">
+                                <Button fx:id="btnGuiThongBao" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Gửi thông báo" >
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

@@ -33,21 +33,15 @@ public class HopDong implements Initializable {
     @FXML private TextField tfTienCoc;
     @FXML private Button btnTaoHopDong;
 
-    // --- BIẾN DÙNG CHUNG ---
     private ObservableList<HopDongModel> listHopDong;
 
-    // ==========================================================
-    // 1. CÁC CLASS MODEL (INNER CLASS)
-    // ==========================================================
-    
-    // Class dùng cho TableView hiển thị
     public static class HopDongModel {
         private int maHopDong;
         private String tenKhach;
         private String tenPhong;
         private Date ngayBD;
         private Date ngayKT;
-        private String tienCoc; // Lưu dạng chuỗi format tiền cho đẹp
+        private String tienCoc;
 
         public HopDongModel(int maHopDong, String tenKhach, String tenPhong, Date ngayBD, Date ngayKT, String tienCoc) {
             this.maHopDong = maHopDong;
@@ -66,7 +60,6 @@ public class HopDong implements Initializable {
         public String getTienCoc() { return tienCoc; }
     }
 
-    // Class dùng cho ComboBox (Lưu Mã và Tên)
     public static class ComboItem {
         private int id;
         private String name;
@@ -79,9 +72,8 @@ public class HopDong implements Initializable {
         public int getId() { return id; }
         
         @Override
-        public String toString() { return name; } // Để hiển thị tên trên ComboBox
+        public String toString() { return name; } 
     }
-    // ==========================================================
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,14 +84,10 @@ public class HopDong implements Initializable {
         colNgayKT.setCellValueFactory(new PropertyValueFactory<>("ngayKT"));
         colTienCoc.setCellValueFactory(new PropertyValueFactory<>("tienCoc"));
 
-        // Load dữ liệu
         loadAllData();
-
-        // Sự kiện nút
         btnTaoHopDong.setOnAction(e -> handleTaoHopDong());
     }
 
-    // --- CÁC HÀM LOAD DỮ LIỆU ---
 
     private void loadAllData() {
         loadTableData();
@@ -109,7 +97,6 @@ public class HopDong implements Initializable {
 
     private void loadTableData() {
         listHopDong = FXCollections.observableArrayList();
-        // Query Join bảng: HopDong -> DatPhong -> NguoiDung & Phong
         String sql = "SELECT hd.MaHopDong, nd.HoTen, p.SoPhong, dp.NgayCheckIn, dp.NgayCheckOut, hd.NoiDungHopDong " +
                      "FROM HopDong hd " +
                      "JOIN DatPhong dp ON hd.MaDatPhong = dp.MaDatPhong " +
@@ -121,8 +108,7 @@ public class HopDong implements Initializable {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                // Xử lý lấy tiền cọc từ nội dung hợp đồng (giả sử mình lưu text)
-                // Hoặc đơn giản hiển thị nội dung
+               
                 String noiDung = rs.getString("NoiDungHopDong");
                 
                 listHopDong.add(new HopDongModel(
@@ -131,7 +117,7 @@ public class HopDong implements Initializable {
                         rs.getString("SoPhong"),
                         rs.getDate("NgayCheckIn"),
                         rs.getDate("NgayCheckOut"),
-                        noiDung // Tạm thời hiển thị nội dung vào cột tiền cọc hoặc format sau
+                        noiDung 
                 ));
             }
             tableHopDong.setItems(listHopDong);
@@ -155,7 +141,7 @@ public class HopDong implements Initializable {
 
     private void loadComboPhong() {
         ObservableList<ComboItem> list = FXCollections.observableArrayList();
-        // Chỉ lấy phòng còn TRỐNG
+        
         String sql = "SELECT MaPhong, SoPhong FROM Phong WHERE TrangThai = N'Trong'";
         try (Connection conn = DatabaseConnection.getConnection();
              ResultSet rs = conn.createStatement().executeQuery(sql)) {
@@ -166,7 +152,6 @@ public class HopDong implements Initializable {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // --- LOGIC TẠO HỢP ĐỒNG (TRANSACTION) ---
 
     private void handleTaoHopDong() {
         if (!validateForm()) return;
@@ -180,9 +165,7 @@ public class HopDong implements Initializable {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            conn.setAutoCommit(false); // Bắt đầu Transaction
-
-            // Bước 1: Tạo record trong bảng DatPhong (Trạng thái = HoanThanh vì đã làm hợp đồng)
+            conn.setAutoCommit(false); 
             String sqlDatPhong = "INSERT INTO DatPhong (MaNguoiDung, MaPhong, NgayCheckIn, NgayCheckOut, TrangThai) VALUES (?, ?, ?, ?, N'HoanThanh')";
             PreparedStatement pst1 = conn.prepareStatement(sqlDatPhong, Statement.RETURN_GENERATED_KEYS);
             pst1.setInt(1, khach.getId());
@@ -191,31 +174,27 @@ public class HopDong implements Initializable {
             pst1.setDate(4, java.sql.Date.valueOf(ngayKT));
             pst1.executeUpdate();
 
-            // Lấy ID DatPhong vừa tạo
             ResultSet rsKeys = pst1.getGeneratedKeys();
             int maDatPhongMoi = 0;
             if (rsKeys.next()) maDatPhongMoi = rsKeys.getInt(1);
 
-            // Bước 2: Tạo record trong bảng HopDong
-            String noiDungHD = "Tiền cọc: " + tienCoc + " VNĐ. Hợp đồng thuê phòng dài hạn.";
+            String noiDungHD = tienCoc;
             String sqlHopDong = "INSERT INTO HopDong (MaDatPhong, NoiDungHopDong) VALUES (?, ?)";
             PreparedStatement pst2 = conn.prepareStatement(sqlHopDong);
             pst2.setInt(1, maDatPhongMoi);
             pst2.setString(2, noiDungHD);
             pst2.executeUpdate();
 
-            // Bước 3: Cập nhật trạng thái Phong -> 'DaDat'
             String sqlUpdatePhong = "UPDATE Phong SET TrangThai = N'DaDat' WHERE MaPhong = ?";
             PreparedStatement pst3 = conn.prepareStatement(sqlUpdatePhong);
             pst3.setInt(1, phong.getId());
             pst3.executeUpdate();
 
-            // Commit Transaction
             conn.commit();
             
             showAlert("Thành công", "Tạo hợp đồng thành công!");
             clearForm();
-            loadAllData(); // Load lại bảng và list phòng trống
+            loadAllData(); 
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -226,7 +205,6 @@ public class HopDong implements Initializable {
         }
     }
 
-    // --- HÀM PHỤ ---
 
     private void clearForm() {
         cbKhachThue.getSelectionModel().clearSelection();

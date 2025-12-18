@@ -7,21 +7,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;      // Thêm import Alert
+import javafx.scene.control.Alert;      
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType; // Thêm import ButtonType
+import javafx.scene.control.ButtonType; 
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;              // Thêm import Optional
+import java.util.Optional;             
 import java.util.ResourceBundle;
 
 public class GiaoDienChinhAdmin implements Initializable {
 
     @FXML
-    private AnchorPane contentArea; // Khu vực hiển thị nội dung bên phải
+    private AnchorPane contentArea; 
 
     // Các Button menu
     @FXML private Button btnDashboard;
@@ -33,10 +33,8 @@ public class GiaoDienChinhAdmin implements Initializable {
     @FXML private Button btnDuyetDatPhong;
     @FXML private Button Dangxuat;
 
-    // --- Hàm khởi chạy đầu tiên ---
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Mặc định load trang Thống kê
         loadView("admin/ThongKe.fxml");
     }
 
@@ -84,7 +82,7 @@ public class GiaoDienChinhAdmin implements Initializable {
         loadView("admin/DuyetDatPhong.fxml");
     }
 
-    // --- Hàm dùng chung để load view con ---
+    // --- Hàm dùng chung để load view  ---
     private void loadView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -103,19 +101,15 @@ public class GiaoDienChinhAdmin implements Initializable {
         }
     }
 
-    // --- XỬ LÝ ĐĂNG XUẤT CÓ XÁC NHẬN ---
     @FXML
     void handleDangXuat(ActionEvent event) {
-        // 1. Tạo hộp thoại xác nhận
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận đăng xuất");
         alert.setHeaderText(null);
         alert.setContentText("Bạn có chắc chắn muốn đăng xuất không?");
 
-        // 2. Hiện hộp thoại và chờ người dùng bấm nút
         Optional<ButtonType> result = alert.showAndWait();
 
-        // 3. Nếu bấm OK thì mới thực hiện đăng xuất
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DangNhap.fxml"));

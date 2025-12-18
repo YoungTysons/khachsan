@@ -34,14 +34,9 @@ public class ThongKe implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Gọi hàm tải dữ liệu ngay khi giao diện được mở
         refreshData(); 
     }
 
-    /**
-     * Hàm dùng để làm mới toàn bộ dữ liệu trên Dashboard
-     * Bạn có thể gọi hàm này từ một nút bấm "Làm mới" trên FXML
-     */
     @FXML
     public void refreshData() {
         loadThongKeCoBan();
@@ -50,17 +45,14 @@ public class ThongKe implements Initializable {
 
     private void loadThongKeCoBan() {
         try (Connection conn = DatabaseConnection.getConnection()) {
-            // 1. Cập nhật tổng số phòng từ DB thực tế
             String sqlTongPhong = "SELECT COUNT(*) AS Tong FROM Phong";
             ResultSet rs1 = conn.prepareStatement(sqlTongPhong).executeQuery();
             if (rs1.next()) lblTongSoPhong.setText(String.valueOf(rs1.getInt("Tong")));
 
-            // 2. Cập nhật số phòng trống (TrangThai = 'Trong')
             String sqlPhongTrong = "SELECT COUNT(*) AS Trong FROM Phong WHERE TrangThai = N'Trong'";
             ResultSet rs2 = conn.prepareStatement(sqlPhongTrong).executeQuery();
             if (rs2.next()) lblPhongTrong.setText(String.valueOf(rs2.getInt("Trong")));
 
-            // 3. Cập nhật doanh thu tháng hiện tại
             String sqlDoanhThu = "SELECT SUM(TongTien) AS DoanhThu FROM DatPhong " +
                     "WHERE (TrangThai = N'HoanThanh' OR TrangThai = N'DaDuyet') " +
                     "AND MONTH(NgayCheckIn) = MONTH(GETDATE()) " +
@@ -83,7 +75,6 @@ public class ThongKe implements Initializable {
         vBoxList.prefWidthProperty().bind(chartContainer.widthProperty());
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            // Truy vấn lấy dữ liệu mới nhất từ các cột SoPhong, LoaiPhong, GiaPhong, TrangThai
             String sql = "SELECT SoPhong, LoaiPhong, GiaPhong, TrangThai FROM Phong";
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -95,7 +86,6 @@ public class ThongKe implements Initializable {
                 row.setStyle("-fx-background-color: white; -fx-padding: 10; -fx-border-color: #eee; -fx-border-radius: 3;");
                 row.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
-                // Hiển thị số phòng (ví dụ: P101, P201)
                 Label name = new Label(rs.getString("SoPhong")); 
                 name.setPrefWidth(150);
                 name.setStyle("-fx-font-weight: bold;");
@@ -111,18 +101,15 @@ public class ThongKe implements Initializable {
                 Label status = new Label(statusText);
                 status.setPrefWidth(100);
                 
-                // Tự động đổi màu dựa trên trạng thái trong Database
                 if (statusText != null && statusText.equalsIgnoreCase("Trong")) {
-                    status.setTextFill(Color.web("#27ae60")); // Màu xanh cho phòng Trống
-                } else {
-                    status.setTextFill(Color.web("#e74c3c")); // Màu đỏ cho phòng đã đặt (DaDat)
+                    status.setTextFill(Color.web("#27ae60")); 
+                    status.setTextFill(Color.web("#e74c3c"));
                 }
 
                 row.getChildren().addAll(name, type, price, status);
                 vBoxList.getChildren().add(row);
             }
 
-            // Xóa danh sách cũ và nạp danh sách mới vừa tải từ Database
             chartContainer.getChildren().clear();
             chartContainer.getChildren().add(vBoxList);
 

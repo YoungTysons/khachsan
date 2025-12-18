@@ -47,12 +47,14 @@ public class DatPhong {
     private VBox createRoomCard(int id, String so, String loai, double gia) {
         VBox box = new VBox(10);
         box.setPrefWidth(280);
-        box.setStyle("-fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-background-radius: 5;");
+        box.setStyle("-fx-background-color: white; -fx-border-color: #dddddd;");        
+    
 
         Label lblSo = new Label("PHÒNG " + so);
         lblSo.setMaxWidth(Double.MAX_VALUE);
         lblSo.setPadding(new Insets(10));
-        lblSo.setStyle("-fx-background-color: #f0f0f0; -fx-font-weight: bold;");
+        
+       
 
         VBox info = new VBox(5);
         info.setPadding(new Insets(10));
@@ -63,7 +65,7 @@ public class DatPhong {
         Label lblLoai = new Label("Loại: " + loai);
         Button btnDat = new Button("ĐẶT NGAY");
         btnDat.setMaxWidth(Double.MAX_VALUE);
-        btnDat.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;");
+    
 
         btnDat.setOnAction(e -> thucHienDat(id, so, gia));
 
@@ -73,7 +75,6 @@ public class DatPhong {
     }
 
     private void thucHienDat(int maPhong, String soPhong, double gia) {
-        // Sử dụng MaNguoiDung lấy từ file GuiPhanAnh (chung 1 chỗ lưu)
         int userId = GuiPhanAnh.CURRENT_USER_ID;
 
         if (userId == 0) {

@@ -12,8 +12,6 @@ import java.sql.SQLException;
 
 public class GuiPhanAnh {
 
-    // --- BIẾN TĨNH LƯU THÔNG TIN NGƯỜI DÙNG ĐANG ĐĂNG NHẬP ---
-    // File DangNhap.java sẽ ghi dữ liệu vào đây sau khi login thành công
     public static int CURRENT_USER_ID;
     public static String CURRENT_USER_NAME;
 
@@ -28,14 +26,13 @@ public class GuiPhanAnh {
 
     private final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=QlyKhachSanDB;encrypt=true;trustServerCertificate=true;";
     private final String DB_USER = "sa";
-    private final String DB_PASS = "123456"; // Sửa pass cho đúng máy bạn
+    private final String DB_PASS = "123456";
 
     @FXML
     public void initialize() {
         tfTieuDe.clear();
         taNoiDung.clear();
 
-        // Gợi ý cho người dùng biết họ đang đăng nhập với tên nào
         if (CURRENT_USER_NAME != null) {
             tfTieuDe.setPromptText(CURRENT_USER_NAME + " ơi, nhập tiêu đề tại đây...");
         }
@@ -52,12 +49,10 @@ public class GuiPhanAnh {
             return;
         }
 
-        // Lấy ID người dùng từ biến static đã lưu lúc đăng nhập
         saveToDatabase(CURRENT_USER_ID, tieuDe, noiDung);
     }
 
     private void saveToDatabase(int userId, String title, String content) {
-        // Cột MaNguoiDung trong SQL giúp Admin biết ai gửi
         String sql = "INSERT INTO PhanAnh (MaNguoiDung, TieuDe, NoiDung, NgayGui, TrangThai) VALUES (?, ?, ?, GETDATE(), N'ChuaXuLy')";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
