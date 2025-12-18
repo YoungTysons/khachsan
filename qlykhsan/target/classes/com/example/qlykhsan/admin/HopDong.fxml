@@ -73,7 +73,7 @@
 
                                 <VBox spacing="5.0">
                                     <children>
-                                        <Label text="Phòng (chỉ hiện phòng trống)" />
+                                        <Label text="Phòng" />
                                         <ComboBox fx:id="cbPhong" maxWidth="1.7976931348623157E308" promptText="-- Chọn phòng --" />
                                     </children>
                                 </VBox>
@@ -99,7 +99,7 @@
                                     </children>
                                 </VBox>
 
-                                <Button fx:id="btnTaoHopDong" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #007bff;" text="Tạo hợp đồng" textFill="WHITE">
+                                <Button fx:id="btnTaoHopDong" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Tạo hợp đồng">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

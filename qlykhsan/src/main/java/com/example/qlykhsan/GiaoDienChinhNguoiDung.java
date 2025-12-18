@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class GiaoDienChinhNguoiDung implements Initializable {
 
     @FXML
-    private AnchorPane contentArea; // Khu vực hiển thị nội dung bên phải (fx:id trong FXML)
+    private AnchorPane contentArea; 
 
     @FXML private Button btnDatPhong;
     @FXML private Button btnThongBao;
@@ -30,7 +30,6 @@ public class GiaoDienChinhNguoiDung implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Mặc định khi vừa vào sẽ hiện trang Đặt Phòng
         loadView("DatPhong.fxml");
     }
 
@@ -54,23 +53,19 @@ public class GiaoDienChinhNguoiDung implements Initializable {
         loadView("GuiPhanAnh.fxml");
     }
 
-    // --- HÀM LOAD VIEW DÙNG CHUNG ---
     private void loadView(String fxmlFileName) {
         try {
-            // Đường dẫn tuyệt đối tính từ thư mục resources
             String path = "/com/example/qlykhsan/NguoiDung/" + fxmlFileName;
             URL resource = getClass().getResource(path);
 
             if (resource == null) {
-                System.err.println("❌ KHÔNG TÌM THẤY FILE TẠI: " + path);
+                System.err.println("KHÔNG TÌM THẤY FILE TẠI: " + path);
                 return;
             }
 
-            // Tạo loader và load node
             FXMLLoader loader = new FXMLLoader(resource);
             Node node = loader.load();
 
-            // Neo các cạnh để view con giãn full vùng chứa
             AnchorPane.setTopAnchor(node, 0.0);
             AnchorPane.setBottomAnchor(node, 0.0);
             AnchorPane.setLeftAnchor(node, 0.0);
@@ -85,7 +80,6 @@ public class GiaoDienChinhNguoiDung implements Initializable {
         }
     }
 
-    // --- XỬ LÝ ĐĂNG XUẤT ---
     @FXML
     void handleDangXuat(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

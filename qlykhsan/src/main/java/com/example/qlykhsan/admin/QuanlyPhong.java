@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 
 public class QuanlyPhong implements Initializable {
 
-    // --- KHAI BÁO FXML ---
     @FXML private TableView<Phong> tablePhong;
     @FXML private TableColumn<Phong, String> colTenPhong;
     @FXML private TableColumn<Phong, Double> colGia;
@@ -34,13 +33,9 @@ public class QuanlyPhong implements Initializable {
     @FXML private Button btnXoa;
     @FXML private Button btnHuy;
 
-    // --- BIẾN DÙNG CHUNG ---
     private ObservableList<Phong> listPhong;
-    private int selectedMaPhong = -1; // -1 nghĩa là chưa chọn phòng nào
+    private int selectedMaPhong = -1; 
 
-    // ==========================================================
-    // 1. CLASS MODEL (GỘP VÀO ĐÂY)
-    // ==========================================================
     public static class Phong {
         private int maPhong;
         private String soPhong;
@@ -56,7 +51,6 @@ public class QuanlyPhong implements Initializable {
             this.trangThai = trangThai;
         }
 
-        // Getters và Setters (Bắt buộc để TableView hiển thị dữ liệu)
         public int getMaPhong() { return maPhong; }
         public void setMaPhong(int maPhong) { this.maPhong = maPhong; }
 
@@ -76,32 +70,26 @@ public class QuanlyPhong implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Cấu hình ComboBox
         cbTrangThai.setItems(FXCollections.observableArrayList("Trong", "DaDat", "DangSuaChua"));
         cbTrangThai.getSelectionModel().selectFirst();
 
-        // Cấu hình Cột bảng (Mapping với tên biến trong class Phong ở trên)
         colTenPhong.setCellValueFactory(new PropertyValueFactory<>("soPhong"));
         colGia.setCellValueFactory(new PropertyValueFactory<>("giaPhong"));
         colMoTa.setCellValueFactory(new PropertyValueFactory<>("loaiPhong"));
         colTrangThai.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
 
-        // Load dữ liệu
         loadDataFromDB();
 
-        // Sự kiện click bảng
         tablePhong.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) fillForm(newVal);
         });
 
-        // Gán sự kiện nút bấm
         btnThem.setOnAction(e -> handleThem());
         btnSua.setOnAction(e -> handleSua());
         btnXoa.setOnAction(e -> handleXoa());
         btnHuy.setOnAction(e -> clearForm());
     }
 
-    // --- XỬ LÝ DATABASE ---
     private void loadDataFromDB() {
         listPhong = FXCollections.observableArrayList();
         String sql = "SELECT * FROM Phong";
@@ -203,7 +191,6 @@ public class QuanlyPhong implements Initializable {
         }
     }
 
-    // --- HÀM PHỤ ---
     private void fillForm(Phong p) {
         selectedMaPhong = p.getMaPhong();
         tfTenPhong.setText(p.getSoPhong());

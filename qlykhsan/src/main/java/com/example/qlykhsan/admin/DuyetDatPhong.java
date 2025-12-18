@@ -19,17 +19,14 @@ import java.util.ResourceBundle;
 
 public class DuyetDatPhong implements Initializable {
 
-    @FXML private TableView<YeuCau> tableYeuCau; // Nhớ sửa FXML xóa dấu cách nhé
+    @FXML private TableView<YeuCau> tableYeuCau;
     @FXML private TableColumn<YeuCau, String> colKhachHang;
     @FXML private TableColumn<YeuCau, String> colPhong;
     @FXML private TableColumn<YeuCau, String> colNgayDat;
-    @FXML private TableColumn<YeuCau, Void> colThaoTac; // Cột đặc biệt chứa Nút bấm
+    @FXML private TableColumn<YeuCau, Void> colThaoTac; 
 
     private ObservableList<YeuCau> listYeuCau;
 
-    // ==========================================================
-    // 1. CLASS MODEL (INNER CLASS)
-    // ==========================================================
     public static class YeuCau {
         private int maDatPhong;
         private String tenKhach;
@@ -52,22 +49,18 @@ public class DuyetDatPhong implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Cấu hình các cột hiển thị thông tin
         colKhachHang.setCellValueFactory(new PropertyValueFactory<>("tenKhach"));
         colPhong.setCellValueFactory(new PropertyValueFactory<>("tenPhong"));
         colNgayDat.setCellValueFactory(new PropertyValueFactory<>("ngayDat"));
 
-        // Cấu hình cột Thao tác (Chứa nút Duyệt/Hủy)
         setupButtonColumn();
 
-        // Load dữ liệu
         loadDataFromDB();
     }
 
     private void loadDataFromDB() {
         listYeuCau = FXCollections.observableArrayList();
         
-        // Chỉ lấy những đơn có trạng thái là 'ChoDuyet'
         String sql = "SELECT dp.MaDatPhong, nd.HoTen, p.SoPhong, dp.NgayDat " +
                      "FROM DatPhong dp " +
                      "JOIN NguoiDung nd ON dp.MaNguoiDung = nd.MaNguoiDung " +
@@ -100,28 +93,23 @@ public class DuyetDatPhong implements Initializable {
         }
     }
 
-    // --- CẤU HÌNH CỘT NÚT BẤM (CELL FACTORY) ---
     private void setupButtonColumn() {
         Callback<TableColumn<YeuCau, Void>, TableCell<YeuCau, Void>> cellFactory = new Callback<>() {
             @Override
             public TableCell<YeuCau, Void> call(final TableColumn<YeuCau, Void> param) {
                 return new TableCell<>() {
-                    // Tạo 2 nút bấm
                     private final Button btnDuyet = new Button("Duyệt");
                     private final Button btnHuy = new Button("Hủy");
 
                     {
-                        // CSS cho nút đẹp hơn
                         btnDuyet.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;");
                         btnHuy.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;");
 
-                        // Sự kiện nút Duyệt
                         btnDuyet.setOnAction(event -> {
                             YeuCau data = getTableView().getItems().get(getIndex());
                             updateTrangThai(data.getMaDatPhong(), "DaDuyet");
                         });
 
-                        // Sự kiện nút Hủy
                         btnHuy.setOnAction(event -> {
                             YeuCau data = getTableView().getItems().get(getIndex());
                             updateTrangThai(data.getMaDatPhong(), "DaHuy");
@@ -134,7 +122,6 @@ public class DuyetDatPhong implements Initializable {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            // Đặt 2 nút vào trong 1 HBox nằm ngang
                             HBox hBox = new HBox(10, btnDuyet, btnHuy);
                             setGraphic(hBox);
                         }
@@ -146,7 +133,6 @@ public class DuyetDatPhong implements Initializable {
         colThaoTac.setCellFactory(cellFactory);
     }
 
-    // --- LOGIC CẬP NHẬT DATABASE ---
     private void updateTrangThai(int maDatPhong, String trangThaiMoi) {
         String sql = "UPDATE DatPhong SET TrangThai = ? WHERE MaDatPhong = ?";
         
@@ -157,11 +143,9 @@ public class DuyetDatPhong implements Initializable {
             pstmt.setInt(2, maDatPhong);
             pstmt.executeUpdate();
 
-            // Thông báo
             String msg = trangThaiMoi.equals("DaDuyet") ? "Đã duyệt yêu cầu!" : "Đã hủy yêu cầu!";
             showAlert("Thành công", msg);
             
-            // Load lại bảng để dòng đó biến mất (vì không còn là 'ChoDuyet' nữa)
             loadDataFromDB();
 
         } catch (Exception e) {
